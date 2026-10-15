@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://zanedeep.vercel.app/sitemap.xml
