@@ -38,7 +38,7 @@ button{font:inherit;color:#fff;cursor:pointer}
 #joy{position:absolute;left:22px;bottom:calc(86px + env(safe-area-inset-bottom));width:120px;height:120px;border:2px dashed #ffffff66;border-radius:50%;pointer-events:auto;touch-action:none}
 #stick{position:absolute;left:50%;top:50%;width:50px;height:50px;border-radius:50%;background:#ffffffcc;transform:translate(-50%,-50%)}
 #btns{position:absolute;right:18px;bottom:calc(92px + env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:12px;pointer-events:auto}
-#btns button{width:84px;height:84px;border-radius:50%;font-weight:800;background:#ff4d5a55}
+#btns button{width:72px;height:72px;border-radius:50%;font-weight:800;background:#ff4d5a55}
 #btns button:active{background:#ff4d5a}
 @media (hover:hover) and (pointer:fine){#joy,#btns{display:none}}
 @media (prefers-reduced-motion:reduce){#zn{transition:none}}
@@ -63,12 +63,12 @@ button{font:inherit;color:#fff;cursor:pointer}
 <nav><a href="/cinema">Zane Deep cinema: watch videos</a> <a href="https://www.bandlab.com/zanedeep">BandLab</a> <a href="https://www.youtube.com/@Zane-Deep">YouTube</a> <a href="https://www.tiktok.com/@alphacloudgod">TikTok</a> <a href="https://www.instagram.com/officialzaydeep">Instagram</a> <a href="https://linktr.ee/ZANEDEEP">Linktree</a></nav></main>
 <div id="start"><h1>Zane<br>Deep</h1><p>Drive around the island. Every glowing zone plays a different style of original production music.</p><button id="go">Tap to drive</button><p style="font-size:12px;opacity:.5">Headphones recommended</p></div>
 <div id="hud">
-<div id="logo">Zane Deep<small>Production music</small></div>
+<div id="logo">Zane Deep<small>Production music &middot; <span id="nc">Notes 0/30</span></small></div>
 <div id="zn"></div><canvas id="mm" width="120" height="120"></canvas><div id="say"><b id="sn"></b><span id="sx"></span></div>
 <div id="card"><b id="ct"></b><span id="cx"></span></div>
 <div id="bar"><span id="np">Drive to a zone</span><span id="spd">0 km/h</span><button id="next">Next</button><button id="mute">Sound on</button><button id="cbtn">Contact</button><a id="cin" href="/cinema">Cinema</a></div>
 <div id="joy"><div id="stick"></div></div>
-<div id="btns"><button id="bo">Boost</button><button id="dr">Drift</button></div>
+<div id="btns"><button id="bo">Boost</button><button id="dr">Drift</button><button id="hn">Horn</button></div>
 </div>
 <div id="modal" role="dialog" aria-modal="true" aria-label="Contact Zane Deep"><div id="mbox">
 <h2>Contact Zane Deep</h2><p>Beats, film scoring, game music, licensing and collabs.</p>
@@ -85,8 +85,8 @@ const $=id=>document.getElementById(id);
 
 
 /* ---------- Zones: each circle plays one song ---------- */
-const SONGS=[{t:'Direct Deposit',u:'direct-deposit.m4a'},{t:'Riding Sideways With MY tune',u:'riding-sideways.m4a'},{t:'NewYorkian',u:'newyorkian.m4a'},{t:'Hop Beat OK',u:'hop-beat-ok.m4a'},{t:'Gangstalkers',u:'gangstalkers.m4a'},{t:'M Lines On My Palm',u:'lines-on-my-palm.m4a'},{t:'NefertitiGold',u:'nefertiti-gold.m4a'},{t:'This Is What I Do',u:'this-is-what-i-do.m4a'},{t:'FULL TITLE',u:'layo.m4a'}];
-const Z=[{n:'Home base',t:'Drive to a glowing circle to hear each song.',c:0xffffff},{n:'Riding Sideways With MY tune',t:'Original song by Zane Deep.',c:0xff4d5a},{n:'NewYorkian',t:'Original song by Zane Deep.',c:0x4da6ff},{n:'Hop Beat OK',t:'Original song by Zane Deep.',c:0x7dff6a},{n:'Gangstalkers',t:'Original song by Zane Deep.',c:0xffc83d},{n:'M Lines On My Palm',t:'Original song by Zane Deep.',c:0xc77dff},{n:'NefertitiGold',t:'Original song by Zane Deep.',c:0xff8c42},{n:'This Is What I Do',t:'Original song by Zane Deep.',c:0x2ee6c8},{n:'FULL TITLE',t:'Original song by Zane Deep.',c:0xff6ec7}];
+const SONGS=[{t:'Direct Deposit',u:'direct-deposit.m4a'},{t:'Riding Sideways With MY tune',u:'riding-sideways.m4a'},{t:'NewYorkian',u:'newyorkian.m4a'},{t:'Hop Beat OK',u:'hop-beat-ok.m4a'},{t:'Gangstalkers',u:'gangstalkers.m4a'},{t:'M Lines On My Palm',u:'lines-on-my-palm.m4a'},{t:'NefertitiGold',u:'nefertiti-gold.m4a'},{t:'This Is What I Do',u:'this-is-what-i-do.m4a'},{t:'Layo',u:'layo.m4a'}];
+const Z=[{n:'Home base',t:'Drive to a glowing circle to hear each song.',c:0xffffff},{n:'Riding Sideways With MY tune',t:'Original song by Zane Deep.',c:0xff4d5a},{n:'NewYorkian',t:'Original song by Zane Deep.',c:0x4da6ff},{n:'Hop Beat OK',t:'Original song by Zane Deep.',c:0x7dff6a},{n:'Gangstalkers',t:'Original song by Zane Deep.',c:0xffc83d},{n:'M Lines On My Palm',t:'Original song by Zane Deep.',c:0xc77dff},{n:'NefertitiGold',t:'Original song by Zane Deep.',c:0xff8c42},{n:'This Is What I Do',t:'Original song by Zane Deep.',c:0x2ee6c8},{n:'Layo',t:'Original song by Zane Deep.',c:0xff6ec7}];
 const ZP=[[0,0]];for(let i=0;i<8;i++){const a=i*Math.PI/4+Math.PI/8;ZP.push([Math.cos(a)*60,Math.sin(a)*60]);}
 
 /* ---------- Scene ---------- */
@@ -105,13 +105,13 @@ function road(geo,rot){const m=new THREE.Mesh(geo,new THREE.MeshStandardMaterial
 for(let k=0;k<4;k++){const a=k*Math.PI/4+Math.PI/8;road(new THREE.PlaneGeometry(6,212),Math.atan2(-Math.cos(a),-Math.sin(a)));}
 const cv=document.createElement('canvas');cv.width=64;cv.height=128;const cx=cv.getContext('2d');cx.fillStyle='#000';cx.fillRect(0,0,64,128);
 for(let y=4;y<124;y+=8)for(let x=4;x<60;x+=8)if(Math.random()<.45){cx.fillStyle=['#ffd27a','#7ad7ff','#ff7ab8','#ffffff'][Math.floor(Math.random()*4)];cx.fillRect(x,y,4,5);}
-const bmat=new THREE.MeshStandardMaterial({color:0x14142a,emissive:0xffffff,emissiveMap:new THREE.CanvasTexture(cv),emissiveIntensity:.9,roughness:.8});
+const bmat=new THREE.MeshStandardMaterial({color:0x14142a,emissive:0xffffff,emissiveMap:new THREE.CanvasTexture(cv),emissiveIntensity:.9,roughness:.8,transparent:true,opacity:.5,depthWrite:false});
 for(let n=0;n<1100&&BL.length<200;n++){const r=14+rnd()*88,a=rnd()*6.283,x=Math.cos(a)*r,z=Math.sin(a)*r,w=3+rnd()*4,d=3+rnd()*4,h=3+rnd()*11,rad=Math.max(w,d)/2*1.05;
 if(Math.abs(r-38)<6||Math.abs(r-84)<6||r>100)continue;let bad=false;
 for(let k=0;k<4;k++){const sa=k*Math.PI/4+Math.PI/8;if(Math.abs(x*Math.sin(sa)-z*Math.cos(sa))<7)bad=true;}
 for(const p of ZP)if(Math.hypot(x-p[0],z-p[1])<10)bad=true;
 for(const q of BL)if(Math.hypot(x-q.x,z-q.z)<q.r+rad+1.5)bad=true;
-if(bad)continue;const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),bmat);m.position.set(x,h/2,z);m.castShadow=true;S.add(m);BL.push({x,z,r:rad});}
+if(bad)continue;const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),bmat);m.position.set(x,h/2,z);S.add(m);BL.push({x,z,r:rad});}
 const sp=[];for(let i=0;i<600;i++){const a=Math.random()*6.283,b=Math.random()*1.4+.05,r=250;sp.push(Math.cos(a)*Math.cos(b)*r,Math.sin(b)*r,Math.sin(a)*Math.cos(b)*r);}
 const sg=new THREE.BufferGeometry();sg.setAttribute('position',new THREE.Float32BufferAttribute(sp,3));S.add(new THREE.Points(sg,new THREE.PointsMaterial({color:0xffffff,size:1.4,fog:false})));
 const cols=[0xff4d5a,0x4da6ff,0x7dff6a,0xffc83d];
@@ -187,7 +187,7 @@ $('mute').onclick=()=>setMute(!muted);
 $('go').onclick=()=>{initAudio();started=true;cur=-1;songFor(want);$('start').style.display='none';};
 
 /* ---------- Controls ---------- */
-const K={};addEventListener('keydown',e=>{K[e.code]=1;if(e.code==='Space')e.preventDefault();if(e.code==='KeyM')setMute(!muted);});addEventListener('keyup',e=>K[e.code]=0);
+const K={};addEventListener('keydown',e=>{K[e.code]=1;if(e.code==='Space')e.preventDefault();if(e.code==='KeyM')setMute(!muted);if(e.code==='KeyH')horn();});addEventListener('keyup',e=>K[e.code]=0);
 let jx=0,jy=0,jid=null,jc,bt=false,dr=false;const J=$('joy'),T=$('stick');
 function mv(t){let dx=t.clientX-jc.x,dy=t.clientY-jc.y;const m=45,d=Math.hypot(dx,dy);if(d>m){dx*=m/d;dy*=m/d;}T.style.transform='translate(calc(-50% + '+dx+'px),calc(-50% + '+dy+'px))';jx=dx/m;jy=dy/m;}
 J.addEventListener('touchstart',e=>{e.preventDefault();const t=e.changedTouches[0];jid=t.identifier;const r=J.getBoundingClientRect();jc={x:r.left+r.width/2,y:r.top+r.height/2};mv(t);},{passive:false});
@@ -228,8 +228,22 @@ const AL=[
 {n:'Kai',c:0x7dff6a,p:1,l:"Follow Zane on TikTok @alphacloudgod and on Instagram @officialzaydeep.",s:"Follow Zane on TikTok at alpha cloud god, and on Instagram at official zay deep."},
 {n:'Mia',c:0xffc83d,p:1.2,l:"Need a beat or music for your project? Tap Contact to email Zane at zanedeep2@gmail.com.",s:"Need a beat or music for your project? Tap Contact to email Zane at zane deep two, at gmail dot com."},
 {n:'Cruz',c:0xff8c42,p:.9,l:"More of Zane's music is on BandLab. Search ZANEDEEP there, then come back and keep driving."},
-{n:'Sky',c:0x2ee6c8,p:1.1,l:"See that helicopter up there? Keep exploring. There is a whole city here, plus a moon and shooting stars."}];
-AL.forEach((a,i)=>{if(i===0){a.x=7;a.z=4;}else{const an=(i-1)*Math.PI/3;a.x=Math.cos(an)*43;a.z=Math.sin(an)*43;}
+{n:'Sky',c:0x2ee6c8,p:1.1,l:"See that helicopter up there? Keep exploring. There is a whole city here, plus a moon and shooting stars."},
+{n:"Zed",c:0xff4d5a,p:1.0,x:48.0,z:19.9,l:"Now playing: Riding Sideways With MY tune. An original song by Zane Deep."},
+{n:"Tay",c:0x4da6ff,p:1.1,x:19.9,z:48.0,l:"Now playing: NewYorkian. An original song by Zane Deep."},
+{n:"Bo",c:0x7dff6a,p:1.2,x:-19.9,z:48.0,l:"Now playing: Hop Beat OK. An original song by Zane Deep."},
+{n:"Ivy",c:0xffc83d,p:1.3,x:-48.0,z:19.9,l:"Now playing: Gangstalkers. An original song by Zane Deep."},
+{n:"Max",c:0xc77dff,p:1.4,x:-48.0,z:-19.9,l:"Now playing: M Lines On My Palm. An original song by Zane Deep."},
+{n:"Joy",c:0xff8c42,p:1.5,x:-19.9,z:-48.0,l:"Now playing: NefertitiGold. An original song by Zane Deep."},
+{n:"Dre",c:0x2ee6c8,p:1.6,x:19.9,z:-48.0,l:"Now playing: This Is What I Do. An original song by Zane Deep."},
+{n:"Rue",c:0xff6ec7,p:1.0,x:48.0,z:-19.9,l:"Now playing: Layo. An original song by Zane Deep."},
+{n:"Zip",c:0xff4d5a,p:0.9,x:76.2,z:44.0,l:"Tip: hold Boost to go fast, and hold Drift to slide around corners."},
+{n:"Echo",c:0x4da6ff,p:1.1,x:0.0,z:88.0,l:"These buildings are holograms, so you can drive straight through them."},
+{n:"Rex",c:0xffc83d,p:1.2,x:-76.2,z:44.0,l:"Miami Twist Out is out now! Find it on Zane's YouTube and TikTok."},
+{n:"Bella",c:0xc77dff,p:1.4,x:-76.2,z:-44.0,l:"Tap Contact to email or call Zane."},
+{n:"Jett",c:0x7dff6a,p:1.5,x:-0.0,z:-88.0,l:"Collect the gold music notes around the island. The counter is at the top."},
+{n:"Zen",c:0x2ee6c8,p:1.6,x:76.2,z:-44.0,l:"Tap the sound button if you want to mute the music and the voices."}];
+AL.forEach((a,i)=>{if(a.x===undefined){if(i===0){a.x=7;a.z=4;}else{const an=(i-1)*Math.PI/3;a.x=Math.cos(an)*43;a.z=Math.sin(an)*43;}}
 const g=new THREE.Group(),mt=PM(a.c,.2,.6),sk=PM(0xe8b890,0,.8);
 const bd=new THREE.Mesh(new THREE.CylinderGeometry(.35,.42,1.1,12),mt);bd.position.y=1;bd.castShadow=true;g.add(bd);
 const hd=new THREE.Mesh(new THREE.SphereGeometry(.3,16,12),sk);hd.position.y=1.85;g.add(hd);
@@ -240,6 +254,21 @@ const lc=document.createElement('canvas');lc.width=256;lc.height=64;const lx=lc.
 const sp=new THREE.Sprite(new THREE.SpriteMaterial({map:new THREE.CanvasTexture(lc)}));sp.scale.set(3,.75,1);sp.position.y=2.9;g.add(sp);
 const rg=new THREE.Mesh(new THREE.RingGeometry(1.5,1.8,32),new THREE.MeshBasicMaterial({color:a.c}));rg.rotation.x=-Math.PI/2;rg.position.y=.05;g.add(rg);
 g.position.set(a.x,0,a.z);S.add(g);a.g=g;BL.push({x:a.x,z:a.z,r:.8});});
+function horn(){if(!AC)return;const t=AC.currentTime;[440,554].forEach(f=>tone('square',f,t,.35,.12,1800));}
+$('hn').addEventListener('touchstart',e=>{e.preventDefault();horn();},{passive:false});$('hn').onclick=horn;
+const NT=30,NOTES=[];let got=0;const nmat=new THREE.MeshStandardMaterial({color:0xffd24a,emissive:0xffb800,emissiveIntensity:1.2});
+for(let i=0;i<NT;i++){const r=20+rnd()*84,a=rnd()*6.283,o=new THREE.Mesh(new THREE.OctahedronGeometry(.7),nmat);o.position.set(Math.cos(a)*r,1.6,Math.sin(a)*r);S.add(o);NOTES.push(o);}
+function updNotes(dt,ts){NOTES.forEach((o,i)=>{if(!o.visible)return;o.rotation.y+=dt*2;o.position.y=1.6+Math.sin(ts/400+i)*.3;
+if(Math.hypot(car.position.x-o.position.x,car.position.z-o.position.z)<2.6){o.visible=false;got++;$('nc').textContent='Notes '+got+'/'+NT;
+if(AC){const t=AC.currentTime;tone('triangle',880,t,.2,.2,4000);tone('triangle',1320,t+.08,.25,.2,4000);}
+if(got===NT){talk({n:'All notes found!',l:'You found every music note. Thanks for visiting the Zane Deep island!',p:1.1});setTimeout(stopTalk,7000);}}});}
+const lpM=new THREE.MeshStandardMaterial({color:0x222233}),lbM=new THREE.MeshBasicMaterial({color:0xfff0b0}),lpG=new THREE.BoxGeometry(.15,4,.15),lbG=new THREE.SphereGeometry(.35,8,8);
+function lamps(r,n){for(let i=0;i<n;i++){const a=i/n*6.283,x=Math.cos(a)*r,z=Math.sin(a)*r,p=new THREE.Mesh(lpG,lpM),b=new THREE.Mesh(lbG,lbM);p.position.set(x,2,z);b.position.set(x,4.1,z);S.add(p,b);}}
+lamps(42,40);lamps(90,64);
+const FF=250,ffA=new Float32Array(FF*3),ffB=new Float32Array(FF);
+for(let i=0;i<FF;i++){const r=rnd()*104,a=rnd()*6.283;ffA[i*3]=Math.cos(a)*r;ffB[i]=1+rnd()*7;ffA[i*3+1]=ffB[i];ffA[i*3+2]=Math.sin(a)*r;}
+const ffG=new THREE.BufferGeometry();ffG.setAttribute('position',new THREE.BufferAttribute(ffA,3));S.add(new THREE.Points(ffG,new THREE.PointsMaterial({color:0xfff2a0,size:.45,transparent:true,opacity:.8,depthWrite:false})));
+function updFly(ts){for(let i=0;i<FF;i++)ffA[i*3+1]=ffB[i]+Math.sin(ts/700+i)*.6;ffG.attributes.position.needsUpdate=true;}
 let near=null,tk=0;
 function talk(a){$('sn').textContent=a.n;$('sx').textContent=a.l;$('say').style.display='block';if(mp3)mp3.volume=.25;clearTimeout(tk);tk=setTimeout(()=>{if(mp3)mp3.volume=1;},9000);
 if(window.speechSynthesis&&!muted&&started){speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(a.s||a.l);u.pitch=a.p;u.onend=()=>{if(mp3)mp3.volume=1;};speechSynthesis.speak(u);}}
@@ -250,6 +279,7 @@ if(d<9&&near!==a&&started){near=a;talk(a);}else if(nr&&d>15){near=null;stopTalk(
 const mm=$('mm'),mx=mm.getContext('2d');
 function drawMM(){mx.clearRect(0,0,120,120);mx.fillStyle='#0a0a1ccc';mx.beginPath();mx.arc(60,60,58,0,6.283);mx.fill();const k=55/108;
 ZP.forEach((p,i)=>{mx.fillStyle='#'+Z[i].c.toString(16).padStart(6,'0');mx.beginPath();mx.arc(60+p[0]*k,60+p[1]*k,i?4:3,0,6.283);mx.fill();});
+NOTES.forEach(o=>{if(o.visible){mx.fillStyle='#ffd24a';mx.fillRect(60+o.position.x*k-1,60+o.position.z*k-1,2,2);}});
 mx.save();mx.translate(60+car.position.x*k,60+car.position.z*k);mx.rotate(Math.PI-ang);mx.fillStyle='#fff';mx.beginPath();mx.moveTo(0,-6);mx.lineTo(4,5);mx.lineTo(-4,5);mx.closePath();mx.fill();mx.restore();}
 /* ---------- Game loop ---------- */
 let last=0,vx=0,vz=0,v=0,ang=0,inZ=-1;const tc=new THREE.Color(0xff4d5a);
@@ -268,7 +298,6 @@ const fx=Math.sin(ang),fz=Math.cos(ang),g=drift?1.5:8;
 vx+=(fx*v-vx)*Math.min(1,g*dt);vz+=(fz*v-vz)*Math.min(1,g*dt);
 car.position.x+=vx*dt;car.position.z+=vz*dt;
 const rr=Math.hypot(car.position.x,car.position.z);if(rr>106){const k=106/rr;car.position.x*=k;car.position.z*=k;vx*=-.3;vz*=-.3;v*=.5;}
-for(const q of BL){const dx=car.position.x-q.x,dz=car.position.z-q.z,d=Math.hypot(dx,dz),mm2=q.r+1.2;if(d<mm2&&d>.001){car.position.x=q.x+dx/d*mm2;car.position.z=q.z+dz/d*mm2;v*=.7;vx*=.5;vz*=.5;}}
 car.rotation.y=ang;sun.position.set(car.position.x+20,40,car.position.z+10);sun.target.position.set(car.position.x,0,car.position.z);body.rotation.z+=(-st*Math.min(1,Math.abs(v)/10)*.1-body.rotation.z)*.1;
 wheels.forEach(w=>w.rotation.x+=v*dt*3);steers.forEach(g=>g.rotation.y+=(st*.45-g.rotation.y)*.2);flame.visible=!!boost&&v>5;if(flame.visible)flame.scale.set(1,1,.7+Math.random()*.7);
 const sp2=Math.hypot(vx,vz);
@@ -288,7 +317,7 @@ $('spd').textContent=Math.round(sp2*4)+' km/h';
 const cd=9+sp2*.12,tx=car.position.x-fx*cd,tz=car.position.z-fz*cd,k2=Math.min(1,4*dt);
 cam.position.x+=(tx-cam.position.x)*k2;cam.position.z+=(tz-cam.position.z)*k2;cam.position.y=5+sp2*.05;
 cam.lookAt(car.position.x+fx*4,1,car.position.z+fz*4);cam.fov=60+sp2*.6;cam.updateProjectionMatrix();
-updMet(dt);updHeli(dt,ts);updAv(dt,ts);drawMM();R.render(S,cam);}
+updMet(dt);updHeli(dt,ts);updAv(dt,ts);updNotes(dt,ts);updFly(ts);drawMM();R.render(S,cam);}
 const M=$('modal');$('cbtn').onclick=()=>M.classList.add('on');$('mclose').onclick=()=>M.classList.remove('on');M.addEventListener('click',e=>{if(e.target===M)M.classList.remove('on');});
 requestAnimationFrame(loop);
 addEventListener('resize',()=>{R.setSize(innerWidth,innerHeight);cam.aspect=innerWidth/innerHeight;cam.updateProjectionMatrix();});
