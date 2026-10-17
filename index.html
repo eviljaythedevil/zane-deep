@@ -47,7 +47,7 @@ button{font:inherit;color:#fff;cursor:pointer}
 const $=id=>document.getElementById(id);
 /* Add your own songs here (copy the mp3 files next to index.html). Leave empty to use the built-in synth music.
    Example: const TRACKS=[{t:'My Beat',u:'beat1.mp3'},{t:'Second Song',u:'beat2.mp3'}]; */
-const TRACKS=[];
+const SONGS=[{t:'Direct Deposit',u:'direct-deposit.m4a'},{t:'Riding Sideways With MY tune',u:'riding-sideways.m4a'},{t:'NewYorkian',u:'newyorkian.m4a'},{t:'Direct Deposit',u:'direct-deposit.m4a'},{t:'Riding Sideways With MY tune',u:'riding-sideways.m4a'}];
 
 /* ---------- Zones: each has its own music ---------- */
 const Z=[
@@ -110,6 +110,7 @@ let AC,mst,eng,engG,nb,muted=false,zi=0,want=0,step=0,nextT=0,beat=0,tIdx=0,mp3=
 function initAudio(){AC=new(window.AudioContext||window.webkitAudioContext)();AC.resume();mst=AC.createGain();mst.gain.value=muted?0:.8;mst.connect(AC.destination);
 eng=AC.createOscillator();eng.type='sawtooth';const f=AC.createBiquadFilter();f.type='lowpass';f.frequency.value=260;engG=AC.createGain();engG.gain.value=0;eng.connect(f);f.connect(engG);engG.connect(mst);eng.start();
 nb=AC.createBuffer(1,AC.sampleRate*.5,AC.sampleRate);const d=nb.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=Math.random()*2-1;
+try{const src=AC.createMediaElementSource(mp3);an=AC.createAnalyser();an.fftSize=256;src.connect(an);an.connect(mst);}catch(e){}
 nextT=AC.currentTime+.1;setInterval(sched,25);}
 function env(g,t,a,d,v){g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(v,t+a);g.gain.exponentialRampToValueAtTime(.001,t+a+d);}
 function tone(type,fr,t,dur,v,cut){const o=AC.createOscillator(),g=AC.createGain(),f=AC.createBiquadFilter();o.type=type;o.frequency.value=fr;f.type='lowpass';f.frequency.value=cut;o.connect(f);f.connect(g);g.connect(mst);env(g,t,.01,dur,v);o.start(t);o.stop(t+dur+.05);}
@@ -126,10 +127,10 @@ const l=z.l[i];if(l&&l!=='.')tone(z.w,fq(z.root*4,+l),t,sd*2.5,.18,3000);
 if(i===0&&z.pad){[0,3,7].forEach(d=>{const o=AC.createOscillator(),g=AC.createGain(),dur=sd*16;o.type='sine';o.frequency.value=z.root*4*Math.pow(2,d/12);o.connect(g);g.connect(mst);g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(.06*z.pad,t+dur*.4);g.gain.linearRampToValueAtTime(0,t+dur);o.start(t);o.stop(t+dur+.1);});}
 nextT+=sd;step++;}}
 function setMute(m){muted=m;if(mst)mst.gain.value=m?0:.8;if(mp3)mp3.muted=m;$('mute').textContent=m?'Sound off':'Sound on';}
-function playTrack(i){tIdx=(i+TRACKS.length)%TRACKS.length;mp3.src=TRACKS[tIdx].u;mp3.play().catch(()=>{});$('np').textContent='Now playing: '+TRACKS[tIdx].t;}
-if(TRACKS.length){mp3=new Audio();mp3.onended=()=>playTrack(tIdx+1);$('next').style.display='block';$('next').onclick=()=>playTrack(tIdx+1);}
+mp3=new Audio();mp3.loop=true;mp3.preload='auto';let cur=-1,started=false,an=null;const fd=new Uint8Array(128);
+function songFor(i){if(cur===i)return;cur=i;mp3.src=SONGS[i].u;mp3.play().catch(()=>{});$('np').textContent='Now playing: '+SONGS[i].t;}
 $('mute').onclick=()=>setMute(!muted);
-$('go').onclick=()=>{initAudio();if(mp3)playTrack(0);$('start').style.display='none';};
+$('go').onclick=()=>{initAudio();started=true;cur=-1;songFor(want);$('start').style.display='none';};
 
 /* ---------- Controls ---------- */
 const K={};addEventListener('keydown',e=>{K[e.code]=1;if(e.code==='Space')e.preventDefault();if(e.code==='KeyM')setMute(!muted);});addEventListener('keyup',e=>K[e.code]=0);
@@ -147,7 +148,7 @@ let last=0,vx=0,vz=0,v=0,ang=0,inZ=-1;const tc=new THREE.Color(0xff4d5a);
 function enter(i){inZ=i;if(i<0){$('card').style.display='none';return;}const z=Z[i];want=i;
 $('ct').textContent=z.n;$('cx').innerHTML=z.t;$('card').style.display='block';
 glow.color.setHex(z.c);tc.setHex(i?z.c:0xff4d5a);
-if(!mp3)$('np').textContent='Now playing: '+z.s+' ('+z.bpm+' bpm)';
+if(started)songFor(i);
 const zn=$('zn');zn.textContent=z.n;zn.style.color='#'+z.c.toString(16).padStart(6,'0');zn.style.opacity=1;setTimeout(()=>zn.style.opacity=0,1400);}
 function loop(ts){requestAnimationFrame(loop);const dt=Math.min((ts-last)/1000||.016,.05);last=ts;
 let th=(K.KeyW||K.ArrowUp?1:0)-(K.KeyS||K.ArrowDown?1:0),st=(K.KeyA||K.ArrowLeft?1:0)-(K.KeyD||K.ArrowRight?1:0);
@@ -168,7 +169,7 @@ for(let i=0;i<NP;i++){if(pL[i]>0){pp[i*3+1]+=dt*1.5;pL[i]-=dt*1.5;if(pL[i]<=0)pp
 let f=-1;for(let i=0;i<5;i++){if(Math.hypot(car.position.x-ZP[i][0],car.position.z-ZP[i][1])<5.6){f=i;break;}}
 if(f!==inZ)enter(f);
 /* audio reactive */
-beat=Math.max(0,beat-dt*4);
+beat=Math.max(0,beat-dt*4);if(an){an.getByteFrequencyData(fd);let q=0;for(let i=0;i<6;i++)q+=fd[i];q=q/6/255;beat=Math.max(beat,q>.7?1:q*.8);}
 if(AC){engG.gain.value=Math.min(.05,Math.abs(v)/16*.05);eng.frequency.value=40+Math.abs(v)*5;}
 const tt=ts/1000;pulse.forEach(m=>m.scale.setScalar(1+beat*.4));scr.material.emissiveIntensity=.5+beat*.9;
 cubes.forEach((c,i)=>{c.rotation.x+=dt;c.rotation.y+=dt*1.3;c.position.y=2.5+Math.sin(tt*2+i)*.5;});
