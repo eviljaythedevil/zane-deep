@@ -1,0 +1,7 @@
+/* TEAM */
+Artist and producer: Zane Deep
+Contact: zanedeep2@gmail.com
+
+/* SITE */
+Last update: 2026/10/16
+Tech: HTML, Three.js, Web Audio, Vercel
