@@ -6,6 +6,7 @@
 - [Island (interactive 3D site)](https://zanedeep.vercel.app/): drive a car to each zone to hear different music
 - [Cinema](https://zanedeep.vercel.app/cinema): videos from the official YouTube channel
 - [Zane Deep Space](https://zanedeep.vercel.app/space): fly a fighter jet around a planet and shoot the aliens
+- [Zane Deep Snowboarding](https://zanedeep.vercel.app/snowboard): 3D trick snowboarding game with jumps, rails and 3 mountains
 - [Zane Deep Boxing](https://zanedeep.vercel.app/boxing): Punch-Out style 3D boxing game in a Las Vegas arena against 5 contenders
 
 ## Official profiles

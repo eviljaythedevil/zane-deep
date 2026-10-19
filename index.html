@@ -57,12 +57,20 @@ button{font:inherit;color:#fff;cursor:pointer}
 .ll{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
 .ll a{color:#fff;text-decoration:none;background:#ffffff14;border-radius:10px;padding:10px;font-size:14px;text-align:center}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+#start{justify-content:center;gap:14px;padding:max(14px,env(safe-area-inset-top)) 14px max(14px,env(safe-area-inset-bottom));overflow:auto}
+#hero{text-align:center}#hero h1{font-size:clamp(40px,14vw,76px);letter-spacing:.02em;background:linear-gradient(90deg,#ffd24a,#ff4d5a,#c77dff);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:900;line-height:.95}
+#hero .tag{font-size:12px;letter-spacing:.2em;opacity:.75;text-transform:uppercase;margin-top:6px;max-width:none}
+#grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:min(94vw,440px)}.lb{grid-column:1/3;text-align:left;font-size:11px;letter-spacing:.18em;text-transform:uppercase;opacity:.7;margin-top:2px}
+.gc{position:relative;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;gap:2px;min-height:108px;padding:12px;border-radius:18px;border:1px solid #ffffff40;color:#fff;text-decoration:none;text-align:left;overflow:hidden;box-shadow:0 8px 24px #0006;font:inherit;cursor:pointer;transition:transform .15s}
+.gc:active{transform:scale(.96)}.gc i{position:absolute;top:8px;right:10px;font-style:normal;font-size:40px;filter:drop-shadow(0 4px 8px #0008)}.gc b{font-size:17px;font-weight:800}.gc span{font-size:12px;opacity:.85}
+.gc.car{background:linear-gradient(135deg,#ff4d5a,#8a0f2a)}.gc.bike{background:linear-gradient(135deg,#ff9a2a,#a8420a)}.gc.jet{background:linear-gradient(135deg,#39d8a0,#0a5a8a)}.gc.box{background:linear-gradient(135deg,#e8203a,#4a0a1a)}.gc.snow{background:linear-gradient(135deg,#5ab8ff,#1a2a8a)}.gc.wide{grid-column:1/3;min-height:92px}
+#foot{display:flex;gap:14px;align-items:center;font-size:12px;opacity:.85}#foot a{color:#ffd24a;text-decoration:none}
 </style></head><body>
 <canvas id="c"></canvas>
 <main class="sr"><h1>Zane Deep: Production Music, Beats and Film Scoring</h1>
 <p>Zane Deep makes original hip-hop and trap beats, cinematic film scoring, game music and lo-fi. Contact: zanedeep2@gmail.com.</p>
-<nav><a href="/cinema">Zane Deep cinema: watch videos</a> <a href="/space">Zane Deep Space: fly the fighter jet</a> <a href="/boxing">Zane Deep Boxing: Vegas title fight</a> <a href="https://www.bandlab.com/zanedeep">BandLab</a> <a href="https://www.youtube.com/@officialzanedeep">YouTube</a> <a href="https://www.tiktok.com/@alphacloudgod">TikTok</a> <a href="https://www.instagram.com/officialzaydeep">Instagram</a> <a href="https://linktr.ee/ZANEDEEP">Linktree</a></nav></main>
-<div id="start"><h1>Zane<br>Deep</h1><p>Drive around the island. Every glowing zone plays a different style of original production music.</p><p style="font-size:14px;opacity:.85">Choose your ride</p><button class="go" data-v="f1">Formula hot rod</button><button class="go" data-v="bike">Dirt bike</button><a class="go" href="/space">Fighter jet (Deep Space)</a><a class="go" href="/boxing" style="background:#e8203a!important;color:#fff!important">🥊 Boxing: Zane Deep vs 5</a><p style="font-size:12px;opacity:.5">Headphones recommended</p></div>
+<nav><a href="/cinema">Zane Deep cinema: watch videos</a> <a href="/space">Zane Deep Space: fly the fighter jet</a> <a href="/snowboard">Zane Deep Snowboarding: jumps and tricks</a> <a href="/boxing">Zane Deep Boxing: Vegas title fight</a> <a href="https://www.bandlab.com/zanedeep">BandLab</a> <a href="https://www.youtube.com/@officialzanedeep">YouTube</a> <a href="https://www.tiktok.com/@alphacloudgod">TikTok</a> <a href="https://www.instagram.com/officialzaydeep">Instagram</a> <a href="https://linktr.ee/ZANEDEEP">Linktree</a></nav></main>
+<div id="start"><div id="hero"><h1>ZANE DEEP</h1><p class="tag">Production music playground</p></div><div id="grid"><div class="lb">Drive the island</div><button class="gc car" data-v="f1"><i>🏎️</i><b>Hot Rod</b><span>Race the island</span></button><button class="gc bike" data-v="bike"><i>🏍️</i><b>Dirt Bike</b><span>Hit the ramps</span></button><div class="lb">More games</div><a class="gc jet" href="/space"><i>🚀</i><b>Fighter Jet</b><span>Deep Space shooter</span></a><a class="gc box" href="/boxing"><i>🥊</i><b>Boxing</b><span>Vegas title fight</span></a><a class="gc snow wide" href="/snowboard"><i>🏂</i><b>Snowboarding</b><span>Jumps, rails and tricks on 3 mountains</span></a></div><div id="foot"><a href="/cinema">Cinema</a><span>Headphones recommended</span></div></div>
 <div id="hud">
 <div id="logo">Zane Deep<small>Production music &middot; <span id="nc">Notes 0/60</span></small></div>
 <div id="zn"></div><canvas id="mm" width="120" height="120"></canvas><div id="say"><b id="sn"></b><span id="sx"></span></div>
@@ -238,7 +246,7 @@ function setMute(m){muted=m;if(mst)mst.gain.value=m?0:.8;if(mp3)mp3.muted=m;$('m
 mp3=new Audio();mp3.loop=true;mp3.preload='auto';let cur=-1,started=false,an=null;const fd=new Uint8Array(128);
 function songFor(i){if(cur===i)return;cur=i;mp3.src=SONGS[i].u;mp3.play().catch(()=>{});$('np').textContent='Now playing: '+SONGS[i].t;}
 $('mute').onclick=()=>setMute(!muted);
-document.querySelectorAll('button.go').forEach(b=>b.onclick=()=>{setVeh(b.dataset.v);initAudio();started=true;cur=-1;songFor(want);$('start').style.display='none';});
+document.querySelectorAll('button.gc').forEach(b=>b.onclick=()=>{setVeh(b.dataset.v);initAudio();started=true;cur=-1;songFor(want);$('start').style.display='none';});
 
 /* ---------- Controls ---------- */
 const K={};addEventListener('keydown',e=>{K[e.code]=1;if(e.code==='Space')e.preventDefault();if(e.code==='KeyM')setMute(!muted);if(e.code==='KeyH')horn();if(e.code==='KeyV')setVeh(VK==='f1'?'bike':'f1');});addEventListener('keyup',e=>K[e.code]=0);
