@@ -1,22 +1,29 @@
 User-agent: *
 Allow: /
+Disallow: /proof/
 
 User-agent: Googlebot
 Allow: /
+Disallow: /proof/
 
 User-agent: Bingbot
 Allow: /
+Disallow: /proof/
 
 User-agent: GPTBot
 Allow: /
+Disallow: /proof/
 
 User-agent: ClaudeBot
 Allow: /
+Disallow: /proof/
 
 User-agent: PerplexityBot
 Allow: /
+Disallow: /proof/
 
 User-agent: Google-Extended
 Allow: /
+Disallow: /proof/
 
 Sitemap: https://zanedeep.vercel.app/sitemap.xml
