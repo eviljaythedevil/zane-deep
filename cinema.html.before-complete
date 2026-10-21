@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Zane Deep Cinema | Videos, Beats and Film Scoring</title>
+<meta name="description" content="Open the curtain and watch Zane Deep videos: original beats, film scoring and game music from the official YouTube channel.">
+<link rel="canonical" href="https://zanedeep.vercel.app/cinema">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="theme-color" content="#0a0a1c">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Zane Deep">
+<meta property="og:title" content="Zane Deep Cinema | Videos, Beats and Film Scoring"><meta property="og:description" content="Open the curtain and watch Zane Deep videos: original beats, film scoring and game music from the official YouTube channel.">
+<meta property="og:url" content="https://zanedeep.vercel.app/cinema"><meta property="og:image" content="https://zanedeep.vercel.app/og-image.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Zane Deep Cinema | Videos, Beats and Film Scoring">
+<meta name="twitter:description" content="Open the curtain and watch Zane Deep videos: original beats, film scoring and game music from the official YouTube channel."><meta name="twitter:image" content="https://zanedeep.vercel.app/og-image.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8F%8E%3C/text%3E%3C/svg%3E">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://zanedeep.vercel.app/cinema#page","url":"https://zanedeep.vercel.app/cinema","name":"Zane Deep Cinema","isPartOf":{"@id":"https://zanedeep.vercel.app/#site"},"about":{"@id":"https://zanedeep.vercel.app/#artist"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://zanedeep.vercel.app/"},{"@type":"ListItem","position":2,"name":"Cinema","item":"https://zanedeep.vercel.app/cinema"}]}]}</script>
+<style>
+:root{--vel:#7a0f23;--vel2:#4a0814;--gold:#e0b45a}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{background:radial-gradient(ellipse at 50% 0,#2a0d17,#0b0508 70%) fixed;color:#f4ead8;font-family:Georgia,"Times New Roman",serif;min-height:100vh;padding:0 14px calc(30px + env(safe-area-inset-bottom))}
+header{display:flex;justify-content:space-between;padding:calc(14px + env(safe-area-inset-top)) 2px 10px;max-width:960px;margin:0 auto}
+header a{color:var(--gold);text-decoration:none;font-size:15px}
+main{max-width:960px;margin:0 auto}
+h1{font-size:clamp(30px,8vw,52px);line-height:1;margin:6px 0}
+.sub{opacity:.7;margin-bottom:14px}
+.stage{position:relative;aspect-ratio:16/9;overflow:hidden;border:3px solid var(--gold);border-radius:8px;background:#000;box-shadow:0 0 50px #7a0f2366}
+.screen,.screen iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.empty{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;padding:16px}
+.cur{position:absolute;top:0;bottom:0;width:51%;z-index:2;transition:transform 1.9s cubic-bezier(.7,0,.2,1);background:repeating-linear-gradient(90deg,var(--vel2) 0 12px,var(--vel) 12px 30px,#a11c38 30px 36px,var(--vel) 36px 54px)}
+.cur.l{left:0;box-shadow:6px 0 18px #0008}.cur.r{right:0;box-shadow:-6px 0 18px #0008}
+.open .l{transform:translateX(-90%)}.open .r{transform:translateX(90%)}
+.val{position:absolute;top:0;left:0;right:0;height:9%;z-index:3;background:linear-gradient(#9a1630,#5a0a1a);border-bottom:4px solid var(--gold)}
+#open{position:absolute;z-index:4;left:50%;top:52%;transform:translate(-50%,-50%);background:var(--gold);color:#2a0d17;border:0;border-radius:40px;padding:14px 26px;font:inherit;font-weight:700;font-size:17px;cursor:pointer}
+.open #open{display:none}
+.row{display:flex;gap:10px;overflow-x:auto;padding:14px 0}
+.row button{flex:0 0 150px;border:2px solid #ffffff33;border-radius:8px;overflow:hidden;background:#000;cursor:pointer;padding:0}
+.row img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover}
+.b{display:inline-block;background:var(--gold);color:#2a0d17;text-decoration:none;font-weight:700;padding:12px 18px;border-radius:30px;margin:4px 6px 4px 0}
+.b.alt{background:transparent;color:var(--gold);border:1px solid var(--gold)}
+section{margin-top:22px;line-height:1.6;max-width:640px;opacity:.85}
+section h2{font-size:20px;margin-bottom:6px}
+@media (prefers-reduced-motion:reduce){.cur{transition:none}}
+</style></head><body>
+<header><a href="/">Back to the island</a><a href="mailto:zanedeep2@gmail.com">Contact</a></header>
+<main>
+<h1>Zane Deep cinema</h1><p class="sub">Tap the curtain to open the show.</p>
+<div class="stage" id="stage"><div class="screen" id="screen"><div id="yt"></div></div><div class="cur l"></div><div class="cur r"></div><div class="val"></div><button id="open">Open the curtain</button></div>
+<p><a class="b" href="https://www.youtube.com/@officialzanedeep?sub_confirmation=1" target="_blank" rel="noopener">Subscribe on YouTube</a><a class="b alt" href="https://www.bandlab.com/zanedeep" target="_blank" rel="noopener">Listen on BandLab</a><a class="b alt" href="mailto:zanedeep2@gmail.com">Email Zane</a></p>
+<section><h2>About these videos</h2><p>Original beats, film scoring and game music by Zane Deep. For licensing, collabs or custom music, email zanedeep2@gmail.com.</p></section>
+</main>
+<script>
+const PL='UUp9mx3EFcThYKylUKmNQdOQ';
+const st=document.getElementById('stage'),sc=document.getElementById('screen');
+let yp=null,got=false,want=false;
+function fallback(){sc.innerHTML='<div class="empty"><p>Watch the latest video on YouTube.</p><a class="b" href="https://www.youtube.com/@officialzanedeep/videos" target="_blank" rel="noopener">Open the channel</a></div>';}
+function go(){if(got)setTimeout(()=>yp.playVideo(),400);}
+window.onYouTubeIframeAPIReady=()=>{
+yp=new YT.Player('yt',{host:'https://www.youtube-nocookie.com',width:'100%',height:'100%',playerVars:{listType:'playlist',list:PL,playsinline:1,rel:0},
+events:{onReady:()=>{let n=0;const t=setInterval(()=>{const l=yp.getPlaylist&&yp.getPlaylist();
+if(l&&l.length){clearInterval(t);got=true;yp.cueVideoById(l[0]);if(want)go();}
+else if(++n>40){clearInterval(t);fallback();}},300);}}});};
+document.getElementById('open').onclick=()=>{st.classList.add('open');want=true;go();};
+const s=document.createElement('script');s.src='https://www.youtube.com/iframe_api';document.head.appendChild(s);
+</script></body></html>

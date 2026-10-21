@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<title>Zane Deep | Production Music, Beats and Film Scoring</title>
+<meta name="description" content="Drive around the Zane Deep island. Each glowing zone plays original beats, film scoring and game music. Contact Zane Deep for licensing and collabs.">
+<link rel="canonical" href="https://zanedeep.vercel.app/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="theme-color" content="#0a0a1c">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Zane Deep">
+<meta property="og:title" content="Zane Deep | Production Music, Beats and Film Scoring"><meta property="og:description" content="Drive around the Zane Deep island. Each glowing zone plays original beats, film scoring and game music. Contact Zane Deep for licensing and collabs.">
+<meta property="og:url" content="https://zanedeep.vercel.app/"><meta property="og:image" content="https://zanedeep.vercel.app/og-image.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Zane Deep | Production Music, Beats and Film Scoring">
+<meta name="twitter:description" content="Drive around the Zane Deep island. Each glowing zone plays original beats, film scoring and game music. Contact Zane Deep for licensing and collabs."><meta name="twitter:image" content="https://zanedeep.vercel.app/og-image.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8F%8E%3C/text%3E%3C/svg%3E">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://zanedeep.vercel.app/#site","url":"https://zanedeep.vercel.app/","name":"Zane Deep","description":"Original production music: beats, film scoring and game music by Zane Deep."},{"@type":"MusicGroup","@id":"https://zanedeep.vercel.app/#artist","name":"Zane Deep","url":"https://zanedeep.vercel.app/","email":"zanedeep2@gmail.com","genre":["Hip hop","Trap","Film score","Video game music","Lo-fi"],"sameAs":["https://snapchat.com/add/alphacloudgod","https://www.tiktok.com/@alphacloudgod","https://www.instagram.com/officialzaydeep","https://www.bandlab.com/zanedeep","https://www.facebook.com/profile.php?id=61583215803084","https://www.youtube.com/@Zane-Deep","https://linktr.ee/ZANEDEEP","https://lemon8-app.com/Zane%20Deep"]}]}</script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;overflow:hidden;background:#07070f;color:#fff;font-family:"Avenir Next","Trebuchet MS",Verdana,sans-serif;touch-action:none;user-select:none;-webkit-user-select:none}
+canvas{position:fixed;inset:0;width:100%;height:100%;display:block}
+button{font:inherit;color:#fff;cursor:pointer}
+#start{position:fixed;inset:0;z-index:50;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;text-align:center;padding:24px;background:radial-gradient(circle at 50% 30%,#3a1458,#06060d 72%)}
+#start h1{font-size:clamp(40px,13vw,84px);font-weight:900;letter-spacing:-.02em;line-height:.9}
+#start p{opacity:.75;font-size:15px;max-width:300px;line-height:1.5}
+#go{background:#ff4d5a;border:0;padding:16px 38px;font-weight:800;font-size:17px;border-radius:40px;box-shadow:0 0 36px #ff4d5a99}
+#hud{position:fixed;inset:0;pointer-events:none;z-index:10}
+#logo{position:absolute;top:calc(14px + env(safe-area-inset-top));left:16px;font-weight:900;font-size:20px;letter-spacing:-.01em}
+#logo small{display:block;font-weight:500;font-size:12px;opacity:.65}
+#zn{position:absolute;top:22%;left:0;right:0;text-align:center;font-size:clamp(30px,9vw,64px);font-weight:900;opacity:0;transition:opacity .5s;text-shadow:0 0 30px currentColor}
+#card{position:absolute;left:50%;bottom:calc(96px + env(safe-area-inset-bottom));transform:translateX(-50%);width:min(88vw,360px);background:#0c0c1ccc;border:1px solid #ffffff33;border-radius:14px;padding:12px 16px;font-size:14px;line-height:1.45;display:none;pointer-events:auto}
+#card b{display:block;font-size:16px;margin-bottom:2px}
+#card a{color:#ffc83d}
+#bar{position:absolute;left:0;right:0;bottom:0;padding:10px 14px calc(10px + env(safe-area-inset-bottom));display:flex;align-items:center;gap:10px;background:linear-gradient(transparent,#05050dcc 40%);pointer-events:auto}
+#np{flex:1;min-width:0;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#spd{font-size:13px;opacity:.7;font-variant-numeric:tabular-nums}
+#bar button,#btns button{background:#ffffff1f;border:1px solid #ffffff44;border-radius:20px;padding:8px 14px;font-size:13px}
+#next{display:none}
+#joy{position:absolute;left:22px;bottom:calc(86px + env(safe-area-inset-bottom));width:120px;height:120px;border:2px dashed #ffffff66;border-radius:50%;pointer-events:auto;touch-action:none}
+#stick{position:absolute;left:50%;top:50%;width:50px;height:50px;border-radius:50%;background:#ffffffcc;transform:translate(-50%,-50%)}
+#btns{position:absolute;right:18px;bottom:calc(92px + env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:12px;pointer-events:auto}
+#btns button{width:84px;height:84px;border-radius:50%;font-weight:800;background:#ff4d5a55}
+#btns button:active{background:#ff4d5a}
+@media (hover:hover) and (pointer:fine){#joy,#btns{display:none}}
+@media (prefers-reduced-motion:reduce){#zn{transition:none}}
+#mm{position:absolute;top:calc(14px + env(safe-area-inset-top));right:14px;width:96px;height:96px;border-radius:50%;border:1px solid #ffffff44}
+#cbtn{background:#ff4d5a!important;border-color:#ff4d5a!important}
+#bar a{color:#fff;text-decoration:none;background:#ffffff1f;border:1px solid #ffffff44;border-radius:20px;padding:8px 14px;font-size:13px}
+@media(max-width:480px){#spd{display:none}}
+#modal{position:fixed;inset:0;z-index:60;background:#05050dee;display:none;align-items:center;justify-content:center;padding:18px;touch-action:pan-y}
+#modal.on{display:flex}
+#mbox{width:min(100%,420px);max-height:88vh;overflow:auto;background:#12122a;border:1px solid #ffffff33;border-radius:18px;padding:20px}
+#mbox h2{font-size:24px;margin-bottom:4px}#mbox p{opacity:.7;font-size:14px;margin-bottom:12px;line-height:1.4}
+.cta{display:block;width:100%;text-align:center;background:#ff4d5a;color:#fff;text-decoration:none;font:inherit;font-weight:800;padding:13px;border:0;border-radius:12px;margin:8px 0}
+.cta.alt{background:#ffffff1f;border:1px solid #ffffff44}
+.ll{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+.ll a{color:#fff;text-decoration:none;background:#ffffff14;border-radius:10px;padding:10px;font-size:14px;text-align:center}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+</style></head><body>
+<canvas id="c"></canvas>
+<main class="sr"><h1>Zane Deep: Production Music, Beats and Film Scoring</h1>
+<p>Zane Deep makes original hip-hop and trap beats, cinematic film scoring, game music and lo-fi. Contact: zanedeep2@gmail.com.</p>
+<nav><a href="/cinema">Zane Deep cinema: watch videos</a> <a href="https://www.bandlab.com/zanedeep">BandLab</a> <a href="https://www.youtube.com/@Zane-Deep">YouTube</a> <a href="https://www.tiktok.com/@alphacloudgod">TikTok</a> <a href="https://www.instagram.com/officialzaydeep">Instagram</a> <a href="https://linktr.ee/ZANEDEEP">Linktree</a></nav></main>
+<div id="start"><h1>Zane<br>Deep</h1><p>Drive around the island. Every glowing zone plays a different style of original production music.</p><button id="go">Tap to drive</button><p style="font-size:12px;opacity:.5">Headphones recommended</p></div>
+<div id="hud">
+<div id="logo">Zane Deep<small>Production music</small></div>
+<div id="zn"></div><canvas id="mm" width="120" height="120"></canvas>
+<div id="card"><b id="ct"></b><span id="cx"></span></div>
+<div id="bar"><span id="np">Drive to a zone</span><span id="spd">0 km/h</span><button id="next">Next</button><button id="mute">Sound on</button><button id="cbtn">Contact</button><a id="cin" href="/cinema">Cinema</a></div>
+<div id="joy"><div id="stick"></div></div>
+<div id="btns"><button id="bo">Boost</button><button id="dr">Drift</button></div>
+</div>
+<div id="modal" role="dialog" aria-modal="true" aria-label="Contact Zane Deep"><div id="mbox">
+<h2>Contact Zane Deep</h2><p>Beats, film scoring, game music, licensing and collabs.</p>
+<a class="cta" href="mailto:zanedeep2@gmail.com">Email zanedeep2@gmail.com</a>
+<a class="cta alt" href="tel:+17252721226">Call or text (725) 272-1226</a>
+<a class="cta alt" href="/cinema">Watch videos in the cinema</a>
+<div class="ll"><a href="https://www.bandlab.com/zanedeep" target="_blank" rel="me noopener">BandLab</a><a href="https://www.youtube.com/@Zane-Deep" target="_blank" rel="me noopener">YouTube</a><a href="https://www.tiktok.com/@alphacloudgod" target="_blank" rel="me noopener">TikTok</a><a href="https://www.instagram.com/officialzaydeep" target="_blank" rel="me noopener">Instagram</a><a href="https://snapchat.com/add/alphacloudgod" target="_blank" rel="me noopener">Snapchat</a><a href="https://www.facebook.com/profile.php?id=61583215803084" target="_blank" rel="me noopener">Facebook</a><a href="https://linktr.ee/ZANEDEEP" target="_blank" rel="me noopener">Linktree</a><a href="https://lemon8-app.com/Zane%20Deep" target="_blank" rel="me noopener">Lemon8</a></div>
+<button class="cta alt" id="mclose">Back to the island</button></div></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+const $=id=>document.getElementById(id);
+/* Add your own songs here (copy the mp3 files next to index.html). Leave empty to use the built-in synth music.
+   Example: const TRACKS=[{t:'My Beat',u:'beat1.mp3'},{t:'Second Song',u:'beat2.mp3'}]; */
+
+
+/* ---------- Zones: each circle plays one song ---------- */
+const SONGS=[{t:'Direct Deposit',u:'direct-deposit.m4a'},{t:'Riding Sideways With MY tune',u:'riding-sideways.m4a'},{t:'NewYorkian',u:'newyorkian.m4a'},{t:'Hop Beat OK',u:'hop-beat-ok.m4a'},{t:'Gangstalkers',u:'gangstalkers.m4a'},{t:'M Lines On My Palm',u:'lines-on-my-palm.m4a'},{t:'NefertitiGold',u:'nefertiti-gold.m4a'},{t:'This Is What I Do',u:'this-is-what-i-do.m4a'},{t:'Layo',u:'layo.m4a'}];
+const Z=[{n:'Home base',t:'Drive to a glowing circle to hear each song.',c:0xffffff},{n:'Riding Sideways With MY tune',t:'Original song by Zane Deep.',c:0xff4d5a},{n:'NewYorkian',t:'Original song by Zane Deep.',c:0x4da6ff},{n:'Hop Beat OK',t:'Original song by Zane Deep.',c:0x7dff6a},{n:'Gangstalkers',t:'Original song by Zane Deep.',c:0xffc83d},{n:'M Lines On My Palm',t:'Original song by Zane Deep.',c:0xc77dff},{n:'NefertitiGold',t:'Original song by Zane Deep.',c:0xff8c42},{n:'This Is What I Do',t:'Original song by Zane Deep.',c:0x2ee6c8},{n:'Layo',t:'Original song by Zane Deep.',c:0xff6ec7}];
+const ZP=[[0,0]];for(let i=0;i<8;i++){const a=i*Math.PI/4+Math.PI/8;ZP.push([Math.cos(a)*42,Math.sin(a)*42]);}
+
+/* ---------- Scene ---------- */
+const R=new THREE.WebGLRenderer({canvas:$('c'),antialias:true});R.setPixelRatio(Math.min(devicePixelRatio,2));R.setSize(innerWidth,innerHeight);R.shadowMap.enabled=true;
+const S=new THREE.Scene();S.background=new THREE.Color(0x0a0a1c);S.fog=new THREE.Fog(0x0a0a1c,50,170);
+const cam=new THREE.PerspectiveCamera(60,innerWidth/innerHeight,.1,400);
+S.add(new THREE.HemisphereLight(0x8890ff,0x201030,.9));
+const sun=new THREE.DirectionalLight(0xffffff,.8);sun.position.set(20,40,10);sun.castShadow=true;sun.shadow.mapSize.set(1024,1024);const sc=sun.shadow.camera;sc.left=sc.bottom=-40;sc.right=sc.top=40;sc.far=120;S.add(sun);S.add(sun.target);
+const MT=(c,e)=>new THREE.MeshStandardMaterial({color:c,emissive:e||0,roughness:.5});
+const plat=new THREE.Mesh(new THREE.CylinderGeometry(75,75,1.5,96),MT(0x15152a));plat.position.y=-.75;plat.receiveShadow=true;S.add(plat);
+const rim=new THREE.Mesh(new THREE.TorusGeometry(75,.3,8,160),new THREE.MeshBasicMaterial({color:0xff4d5a}));rim.rotation.x=Math.PI/2;S.add(rim);
+/* roads and city */
+const BL=[];let sd=7;const rnd=()=>(sd=(sd*16807)%2147483647)/2147483647;
+function road(geo,rot){const m=new THREE.Mesh(geo,new THREE.MeshStandardMaterial({color:0x242436,roughness:.9}));m.rotation.x=-Math.PI/2;if(rot!==undefined)m.rotation.z=rot;m.position.y=.03;m.receiveShadow=true;S.add(m);}
+[26,58].forEach(r=>{road(new THREE.RingGeometry(r-3,r+3,128));[r-3,r+3].forEach(q=>{const e=new THREE.Mesh(new THREE.RingGeometry(q-.07,q+.07,128),new THREE.MeshBasicMaterial({color:0x5b5bff}));e.rotation.x=-Math.PI/2;e.position.y=.04;S.add(e);});});
+for(let k=0;k<4;k++){const a=k*Math.PI/4+Math.PI/8;road(new THREE.PlaneGeometry(6,146),Math.atan2(-Math.cos(a),-Math.sin(a)));}
+const cv=document.createElement('canvas');cv.width=64;cv.height=128;const cx=cv.getContext('2d');cx.fillStyle='#000';cx.fillRect(0,0,64,128);
+for(let y=4;y<124;y+=8)for(let x=4;x<60;x+=8)if(Math.random()<.45){cx.fillStyle=['#ffd27a','#7ad7ff','#ff7ab8','#ffffff'][Math.floor(Math.random()*4)];cx.fillRect(x,y,4,5);}
+const bmat=new THREE.MeshStandardMaterial({color:0x14142a,emissive:0xffffff,emissiveMap:new THREE.CanvasTexture(cv),emissiveIntensity:.9,roughness:.8});
+for(let n=0;n<500&&BL.length<110;n++){const r=12+rnd()*60,a=rnd()*6.283,x=Math.cos(a)*r,z=Math.sin(a)*r,w=3+rnd()*4,d=3+rnd()*4,h=3+rnd()*11,rad=Math.max(w,d)/2*1.05;
+if(Math.abs(r-26)<6||Math.abs(r-58)<6||r>68)continue;let bad=false;
+for(let k=0;k<4;k++){const sa=k*Math.PI/4+Math.PI/8;if(Math.abs(x*Math.sin(sa)-z*Math.cos(sa))<7)bad=true;}
+for(const p of ZP)if(Math.hypot(x-p[0],z-p[1])<10)bad=true;
+for(const q of BL)if(Math.hypot(x-q.x,z-q.z)<q.r+rad+1.5)bad=true;
+if(bad)continue;const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),bmat);m.position.set(x,h/2,z);m.castShadow=true;S.add(m);BL.push({x,z,r:rad});}
+const sp=[];for(let i=0;i<600;i++){const a=Math.random()*6.283,b=Math.random()*1.4+.05,r=250;sp.push(Math.cos(a)*Math.cos(b)*r,Math.sin(b)*r,Math.sin(a)*Math.cos(b)*r);}
+const sg=new THREE.BufferGeometry();sg.setAttribute('position',new THREE.Float32BufferAttribute(sp,3));S.add(new THREE.Points(sg,new THREE.PointsMaterial({color:0xffffff,size:1.4,fog:false})));
+const cols=[0xff4d5a,0x4da6ff,0x7dff6a,0xffc83d];
+for(let i=0;i<64;i++){const a=i/64*6.283,h=1+Math.random()*4,b=new THREE.Mesh(new THREE.BoxGeometry(.8,h,.8),MT(0x111122,cols[i%4]));b.position.set(Math.cos(a)*77,h/2-1,Math.sin(a)*77);S.add(b);}
+
+/* zones */
+const zg=[];
+Z.forEach((z,i)=>{const g=new THREE.Group();g.position.set(ZP[i][0],0,ZP[i][1]);S.add(g);
+const ring=new THREE.Mesh(new THREE.RingGeometry(5.6,6.4,64),new THREE.MeshBasicMaterial({color:z.c}));ring.rotation.x=-Math.PI/2;ring.position.y=.04;g.add(ring);
+const pad=new THREE.Mesh(new THREE.CircleGeometry(5.6,64),new THREE.MeshBasicMaterial({color:z.c,transparent:true,opacity:.12}));pad.rotation.x=-Math.PI/2;pad.position.y=.03;g.add(pad);
+if(i){const be=new THREE.Mesh(new THREE.CylinderGeometry(.15,.15,16,8,1,true),new THREE.MeshBasicMaterial({color:z.c,transparent:true,opacity:.35}));be.position.y=8;g.add(be);}
+const pl=new THREE.PointLight(z.c,1.2,18);pl.position.y=3;g.add(pl);zg.push(g);});
+const pulse=[];
+[-2.5,2.5].forEach(dx=>{const s=new THREE.Mesh(new THREE.BoxGeometry(1.6,2.6,1.4),MT(0x111118));s.position.set(dx,1.3,0);s.castShadow=true;zg[1].add(s);
+const c=new THREE.Mesh(new THREE.CircleGeometry(.5,24),MT(0xff4d5a,0xff4d5a));c.position.set(dx,1,.71);zg[1].add(c);pulse.push(c);});
+const scr=new THREE.Mesh(new THREE.BoxGeometry(5,2.8,.2),MT(0x0a1a2a,0x4da6ff));scr.position.set(0,2.8,0);zg[2].add(scr);
+const cubes=[];for(let i=0;i<5;i++){const a=i/5*6.283,c=new THREE.Mesh(new THREE.BoxGeometry(.9,.9,.9),MT(0x112211,0x7dff6a));c.position.set(Math.cos(a)*3,2.5,Math.sin(a)*3);zg[3].add(c);cubes.push(c);}
+const knot=new THREE.Mesh(new THREE.TorusKnotGeometry(1,.3,64,8),MT(0x221800,0xffc83d));knot.position.y=2.8;zg[4].add(knot);
+const dg=new THREE.CylinderGeometry(1.6,1.6,.08,48),disc=new THREE.Mesh(dg,MT(0x0a0a0a,0x333344));disc.position.y=1.6;zg[0].add(disc);
+const ped=new THREE.Mesh(new THREE.CylinderGeometry(.3,.5,1.5,12),MT(0x222233));ped.position.y=.75;zg[0].add(ped);
+const spin=[];for(let i=5;i<9;i++){const o=new THREE.Mesh(new THREE.OctahedronGeometry(1.1),MT(0x111122,Z[i].c));o.position.y=2.8;zg[i].add(o);spin.push(o);}
+
+/* car */
+const car=new THREE.Group();S.add(car);const body=new THREE.Group();car.add(body);
+const PM=(c,m,r)=>new THREE.MeshStandardMaterial({color:c,metalness:m,roughness:r});
+const paint=PM(0xff2b4d,.75,.25),dark=PM(0x0a0a12,.5,.4),white=PM(0xffffff,.2,.4),glass=new THREE.MeshStandardMaterial({color:0x0b1c33,metalness:.9,roughness:.1,transparent:true,opacity:.85});
+const hlM=new THREE.MeshBasicMaterial({color:0xfff3b0}),tlM=new THREE.MeshBasicMaterial({color:0xff2030});
+function bx(w,h,d,m,x,y,z){const o=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),m);o.position.set(x,y,z);o.castShadow=true;body.add(o);return o;}
+bx(1.7,.38,3.4,paint,0,.5,0);bx(1.5,.2,1.3,paint,0,.74,1).rotation.x=.12;
+const cab=new THREE.Mesh(new THREE.CylinderGeometry(.62,.95,.42,4),glass);cab.rotation.y=Math.PI/4;cab.scale.set(1,1,1.5);cab.position.set(0,.93,-.25);cab.castShadow=true;body.add(cab);
+bx(.86,.05,1.28,paint,0,1.16,-.25);bx(.2,.02,3.3,white,0,.71,0);
+[-.88,.88].forEach(x=>{bx(.1,.12,2.2,dark,x,.32,0);bx(.08,.35,.12,dark,x*.57,.92,-1.5);bx(.05,.22,.5,paint,x*.97,1.15,-1.55);bx(.45,.12,.08,hlM,x*.62,.62,1.71);});
+bx(1.7,.07,.5,dark,0,1.12,-1.55);bx(1.8,.05,.4,dark,0,.3,1.75);bx(1.5,.1,.06,tlM,0,.68,-1.71);
+const ug=new THREE.Mesh(new THREE.PlaneGeometry(1.9,3.6),new THREE.MeshBasicMaterial({color:0xffffff,transparent:true,opacity:.5}));ug.rotation.x=-Math.PI/2;ug.position.y=.06;car.add(ug);
+const flame=new THREE.Group();[-.45,.45].forEach(x=>{const g=new THREE.ConeGeometry(.18,1.2,8);g.rotateX(-Math.PI/2);const f=new THREE.Mesh(g,new THREE.MeshBasicMaterial({color:0xff7a00,transparent:true,opacity:.85}));f.position.set(x,.55,-2.3);flame.add(f);});flame.visible=false;car.add(flame);
+const wheels=[],steers=[];[[-.9,.38,1.05],[.9,.38,1.05],[-.9,.38,-1.05],[.9,.38,-1.05]].forEach(([x,y,z])=>{const pv=new THREE.Group();pv.position.set(x,y,z);const w=new THREE.Group();
+const t=new THREE.CylinderGeometry(.38,.38,.3,20);t.rotateZ(Math.PI/2);const rm=new THREE.CylinderGeometry(.24,.24,.32,12);rm.rotateZ(Math.PI/2);
+const tm=new THREE.Mesh(t,PM(0x0c0c0c,.2,.8)),rmm=new THREE.Mesh(rm,PM(0xdddddd,.9,.2));tm.castShadow=true;w.add(tm,rmm);pv.add(w);car.add(pv);wheels.push(w);if(z>0)steers.push(pv);});
+const glow=new THREE.PointLight(0xffffff,1.6,10);glow.position.y=.4;car.add(glow);
+const hl=new THREE.SpotLight(0xfff3d0,1.6,34,.55,.5);hl.position.set(0,.8,1.7);hl.target.position.set(0,0,10);car.add(hl,hl.target);
+
+/* smoke */
+const NP=60,pp=new Float32Array(NP*3).fill(-50),pL=new Float32Array(NP);const pg=new THREE.BufferGeometry();pg.setAttribute('position',new THREE.BufferAttribute(pp,3));
+const pts=new THREE.Points(pg,new THREE.PointsMaterial({color:0xffffff,size:.6,transparent:true,opacity:.5,depthWrite:false}));pts.frustumCulled=false;S.add(pts);let pi=0;
+function puff(x,z){pp[pi*3]=x;pp[pi*3+1]=.25;pp[pi*3+2]=z;pL[pi]=1;pi=(pi+1)%NP;}
+
+/* ---------- Audio: generative music, no files needed ---------- */
+let AC,mst,eng,engG,nb,muted=false,zi=0,want=0,step=0,nextT=0,beat=0,tIdx=0,mp3=null;
+function initAudio(){AC=new(window.AudioContext||window.webkitAudioContext)();AC.resume();mst=AC.createGain();mst.gain.value=muted?0:.8;mst.connect(AC.destination);
+eng=AC.createOscillator();eng.type='sawtooth';const f=AC.createBiquadFilter();f.type='lowpass';f.frequency.value=260;engG=AC.createGain();engG.gain.value=0;eng.connect(f);f.connect(engG);engG.connect(mst);eng.start();
+nb=AC.createBuffer(1,AC.sampleRate*.5,AC.sampleRate);const d=nb.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=Math.random()*2-1;
+try{const src=AC.createMediaElementSource(mp3);an=AC.createAnalyser();an.fftSize=256;src.connect(an);an.connect(mst);}catch(e){}
+nextT=AC.currentTime+.1;setInterval(sched,25);}
+function env(g,t,a,d,v){g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(v,t+a);g.gain.exponentialRampToValueAtTime(.001,t+a+d);}
+function tone(type,fr,t,dur,v,cut){const o=AC.createOscillator(),g=AC.createGain(),f=AC.createBiquadFilter();o.type=type;o.frequency.value=fr;f.type='lowpass';f.frequency.value=cut;o.connect(f);f.connect(g);g.connect(mst);env(g,t,.01,dur,v);o.start(t);o.stop(t+dur+.05);}
+function noise(t,dur,v,hp,type){const s=AC.createBufferSource(),g=AC.createGain(),f=AC.createBiquadFilter();s.buffer=nb;f.type=type||'highpass';f.frequency.value=hp;s.connect(f);f.connect(g);g.connect(mst);env(g,t,.002,dur,v);s.start(t);s.stop(t+dur+.05);}
+function kick(t){const o=AC.createOscillator(),g=AC.createGain();o.frequency.setValueAtTime(160,t);o.frequency.exponentialRampToValueAtTime(40,t+.15);o.connect(g);g.connect(mst);env(g,t,.003,.3,1);o.start(t);o.stop(t+.35);}
+const SC=[0,3,5,7,10,12,15,17],fq=(r,d)=>r*Math.pow(2,SC[d]/12);
+function sched(){if(mp3||!AC)return;
+while(nextT<AC.currentTime+.12){const i=step%16,t=nextT;if(i===0)zi=want;const z=Z[zi],sd=60/z.bpm/4;
+if(z.k[i]==='x'){kick(t);beat=1;}
+if(z.sn[i]==='x')noise(t,.15,.5,1500,'bandpass');
+if(z.h[i]==='x')noise(t,.04,.18,7000);
+const b=z.b[i];if(b&&b!=='.')tone(z.w==='square'?'square':'sawtooth',fq(z.root,+b),t,sd*3,.35,500);
+const l=z.l[i];if(l&&l!=='.')tone(z.w,fq(z.root*4,+l),t,sd*2.5,.18,3000);
+if(i===0&&z.pad){[0,3,7].forEach(d=>{const o=AC.createOscillator(),g=AC.createGain(),dur=sd*16;o.type='sine';o.frequency.value=z.root*4*Math.pow(2,d/12);o.connect(g);g.connect(mst);g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(.06*z.pad,t+dur*.4);g.gain.linearRampToValueAtTime(0,t+dur);o.start(t);o.stop(t+dur+.1);});}
+nextT+=sd;step++;}}
+function setMute(m){muted=m;if(mst)mst.gain.value=m?0:.8;if(mp3)mp3.muted=m;$('mute').textContent=m?'Sound off':'Sound on';}
+mp3=new Audio();mp3.loop=true;mp3.preload='auto';let cur=-1,started=false,an=null;const fd=new Uint8Array(128);
+function songFor(i){if(cur===i)return;cur=i;mp3.src=SONGS[i].u;mp3.play().catch(()=>{});$('np').textContent='Now playing: '+SONGS[i].t;}
+$('mute').onclick=()=>setMute(!muted);
+$('go').onclick=()=>{initAudio();started=true;cur=-1;songFor(want);$('start').style.display='none';};
+
+/* ---------- Controls ---------- */
+const K={};addEventListener('keydown',e=>{K[e.code]=1;if(e.code==='Space')e.preventDefault();if(e.code==='KeyM')setMute(!muted);});addEventListener('keyup',e=>K[e.code]=0);
+let jx=0,jy=0,jid=null,jc,bt=false,dr=false;const J=$('joy'),T=$('stick');
+function mv(t){let dx=t.clientX-jc.x,dy=t.clientY-jc.y;const m=45,d=Math.hypot(dx,dy);if(d>m){dx*=m/d;dy*=m/d;}T.style.transform='translate(calc(-50% + '+dx+'px),calc(-50% + '+dy+'px))';jx=dx/m;jy=dy/m;}
+J.addEventListener('touchstart',e=>{e.preventDefault();const t=e.changedTouches[0];jid=t.identifier;const r=J.getBoundingClientRect();jc={x:r.left+r.width/2,y:r.top+r.height/2};mv(t);},{passive:false});
+J.addEventListener('touchmove',e=>{e.preventDefault();for(const t of e.changedTouches)if(t.identifier===jid)mv(t);},{passive:false});
+const jend=e=>{for(const t of e.changedTouches)if(t.identifier===jid){jid=null;jx=jy=0;T.style.transform='translate(-50%,-50%)';}};
+J.addEventListener('touchend',jend);J.addEventListener('touchcancel',jend);
+function hold(el,f){['touchstart','mousedown'].forEach(n=>el.addEventListener(n,e=>{e.preventDefault();f(true);},{passive:false}));['touchend','touchcancel','mouseup','mouseleave'].forEach(n=>el.addEventListener(n,()=>f(false)));}
+hold($('bo'),v=>bt=v);hold($('dr'),v=>dr=v);
+
+const mm=$('mm'),mx=mm.getContext('2d');
+function drawMM(){mx.clearRect(0,0,120,120);mx.fillStyle='#0a0a1ccc';mx.beginPath();mx.arc(60,60,58,0,6.283);mx.fill();const k=55/75;
+ZP.forEach((p,i)=>{mx.fillStyle='#'+Z[i].c.toString(16).padStart(6,'0');mx.beginPath();mx.arc(60+p[0]*k,60+p[1]*k,i?4:3,0,6.283);mx.fill();});
+mx.save();mx.translate(60+car.position.x*k,60+car.position.z*k);mx.rotate(Math.PI-ang);mx.fillStyle='#fff';mx.beginPath();mx.moveTo(0,-6);mx.lineTo(4,5);mx.lineTo(-4,5);mx.closePath();mx.fill();mx.restore();}
+/* ---------- Game loop ---------- */
+let last=0,vx=0,vz=0,v=0,ang=0,inZ=-1;const tc=new THREE.Color(0xff4d5a);
+function enter(i){inZ=i;if(i<0){$('card').style.display='none';return;}const z=Z[i];want=i;
+$('ct').textContent=z.n;$('cx').innerHTML=z.t;$('card').style.display='block';
+glow.color.setHex(z.c);ug.material.color.setHex(z.c);tc.setHex(i?z.c:0xff4d5a);
+if(started)songFor(i);
+const zn=$('zn');zn.textContent=z.n;zn.style.color='#'+z.c.toString(16).padStart(6,'0');zn.style.opacity=1;setTimeout(()=>zn.style.opacity=0,1400);}
+function loop(ts){requestAnimationFrame(loop);const dt=Math.min((ts-last)/1000||.016,.05);last=ts;
+let th=(K.KeyW||K.ArrowUp?1:0)-(K.KeyS||K.ArrowDown?1:0),st=(K.KeyA||K.ArrowLeft?1:0)-(K.KeyD||K.ArrowRight?1:0);
+if(jid!==null){th=-jy;st=-jx;}
+const boost=K.ShiftLeft||K.ShiftRight||bt,drift=K.Space||dr,max=boost?34:22;
+v+=th*(boost?36:26)*dt;if(Math.abs(th)<.1)v*=Math.pow(.3,dt);if(drift)v*=Math.pow(.6,dt);v=Math.max(-7,Math.min(max,v));
+ang+=st*dt*2.4*Math.min(1,Math.abs(v)/5)*(v>=0?1:-1)*(drift?1.5:1);
+const fx=Math.sin(ang),fz=Math.cos(ang),g=drift?1.5:8;
+vx+=(fx*v-vx)*Math.min(1,g*dt);vz+=(fz*v-vz)*Math.min(1,g*dt);
+car.position.x+=vx*dt;car.position.z+=vz*dt;
+const rr=Math.hypot(car.position.x,car.position.z);if(rr>73){const k=73/rr;car.position.x*=k;car.position.z*=k;vx*=-.3;vz*=-.3;v*=.5;}
+for(const q of BL){const dx=car.position.x-q.x,dz=car.position.z-q.z,d=Math.hypot(dx,dz),mm2=q.r+1.2;if(d<mm2&&d>.001){car.position.x=q.x+dx/d*mm2;car.position.z=q.z+dz/d*mm2;v*=.7;vx*=.5;vz*=.5;}}
+car.rotation.y=ang;sun.position.set(car.position.x+20,40,car.position.z+10);sun.target.position.set(car.position.x,0,car.position.z);body.rotation.z+=(-st*Math.min(1,Math.abs(v)/10)*.1-body.rotation.z)*.1;
+wheels.forEach(w=>w.rotation.x+=v*dt*3);steers.forEach(g=>g.rotation.y+=(st*.45-g.rotation.y)*.2);flame.visible=!!boost&&v>5;if(flame.visible)flame.scale.set(1,1,.7+Math.random()*.7);
+const sp2=Math.hypot(vx,vz);
+if((drift||boost)&&sp2>5){puff(car.position.x-fx*1.2+(Math.random()-.5)*.8,car.position.z-fz*1.2+(Math.random()-.5)*.8);}
+for(let i=0;i<NP;i++){if(pL[i]>0){pp[i*3+1]+=dt*1.5;pL[i]-=dt*1.5;if(pL[i]<=0)pp[i*3+1]=-50;}}pg.attributes.position.needsUpdate=true;
+/* zone check */
+let f=-1;for(let i=0;i<ZP.length;i++){if(Math.hypot(car.position.x-ZP[i][0],car.position.z-ZP[i][1])<5.6){f=i;break;}}
+if(f!==inZ)enter(f);
+/* audio reactive */
+beat=Math.max(0,beat-dt*4);if(an){an.getByteFrequencyData(fd);let q=0;for(let i=0;i<6;i++)q+=fd[i];q=q/6/255;beat=Math.max(beat,q>.7?1:q*.8);}
+if(AC){engG.gain.value=Math.min(.05,Math.abs(v)/16*.05);eng.frequency.value=40+Math.abs(v)*5;}
+const tt=ts/1000;pulse.forEach(m=>m.scale.setScalar(1+beat*.4));scr.material.emissiveIntensity=.5+beat*.9;
+cubes.forEach((c,i)=>{c.rotation.x+=dt;c.rotation.y+=dt*1.3;c.position.y=2.5+Math.sin(tt*2+i)*.5;});
+spin.forEach(o=>{o.rotation.y+=dt*1.2;o.rotation.x+=dt*.6;});knot.rotation.y+=dt;knot.rotation.x+=dt*.5;disc.rotation.y+=dt*2.5;rim.material.color.lerp(tc,.05);
+$('spd').textContent=Math.round(sp2*4)+' km/h';
+/* camera */
+const cd=9+sp2*.12,tx=car.position.x-fx*cd,tz=car.position.z-fz*cd,k2=Math.min(1,4*dt);
+cam.position.x+=(tx-cam.position.x)*k2;cam.position.z+=(tz-cam.position.z)*k2;cam.position.y=5+sp2*.05;
+cam.lookAt(car.position.x+fx*4,1,car.position.z+fz*4);cam.fov=60+sp2*.6;cam.updateProjectionMatrix();
+drawMM();R.render(S,cam);}
+const M=$('modal');$('cbtn').onclick=()=>M.classList.add('on');$('mclose').onclick=()=>M.classList.remove('on');M.addEventListener('click',e=>{if(e.target===M)M.classList.remove('on');});
+requestAnimationFrame(loop);
+addEventListener('resize',()=>{R.setSize(innerWidth,innerHeight);cam.aspect=innerWidth/innerHeight;cam.updateProjectionMatrix();});
+</script></body></html>
