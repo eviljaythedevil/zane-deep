@@ -1,7 +1,6 @@
 {
   "name": "ZANE DEEP",
   "short_name": "ZANE DEEP",
-  "description": "ZANE DEEP - Interactive snowboard game world. Ride, trick, and listen to Evil JAY the Devil",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
