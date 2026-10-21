@@ -1,0 +1,9 @@
+# local backups and stray files that should never go live
+*.before-*
+*-before-*.html
+index-perfect-today.html
+*.b64
+Y
+type:
+songs.txt
+.env*
